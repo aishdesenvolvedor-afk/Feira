@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffea arabica — Ficha Botânica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brown-950: #1a0a00;
+    --brown-900: #2c1200;
+    --brown-800: #3d1a00;
+    --brown-700: #5c2800;
+    --brown-600: #7a3800;
+    --brown-500: #9a4d0f;
+    --brown-400: #c26b1e;
+    --brown-300: #d9922a;
+    --brown-200: #e8b96b;
+    --brown-100: #f2d9a8;
+    --brown-50:  #faf3e8;
+    --cream: #fdf8f0;
+    --text-dark: #1a0a00;
+    --text-mid: #5c2800;
+    --text-light: #9a4d0f;
+    --border: rgba(90,40,0,.14);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--brown-900);
+    color: var(--brown-100);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 110%, #5c280066 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--brown-300);
+    margin-bottom: 1.25rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--brown-50);
+    margin-bottom: .6rem;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--brown-200);
+    letter-spacing: .03em;
+    margin-bottom: 2.5rem;
+  }
+  .hero-bean {
+    width: 64px; height: 64px;
+    margin: 0 auto 2rem;
+    opacity: .75;
+  }
+
+  /* ── Nav pills ── */
+  .nav-pills {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .nav-pills a {
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border: 1px solid var(--brown-600);
+    border-radius: 999px;
+    color: var(--brown-200);
+    transition: background .2s, color .2s;
+  }
+  .nav-pills a:hover { background: var(--brown-700); color: var(--brown-50); }
+
+  /* ── Layout ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+  section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--brown-400);
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--brown-900);
+    margin-bottom: 1rem;
+  }
+
+  /* ── Taxonomy grid ── */
+  .taxonomy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+  .tax-cell {
+    background: #fff;
+    padding: 1.1rem 1.25rem;
+  }
+  .tax-rank {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--brown-400);
+    margin-bottom: .3rem;
+  }
+  .tax-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--brown-900);
+    font-style: italic;
+  }
+  .tax-value.plain { font-style: normal; font-size: .95rem; }
+
+  /* ── Photo cards ── */
+  .photo-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+  @media (max-width: 600px) { .photo-pair { grid-template-columns: 1fr; } }
+
+  .photo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #fff;
+  }
+  .photo-card img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-caption {
+    padding: .9rem 1.1rem;
+  }
+  .photo-caption strong {
+    display: block;
+    font-size: .88rem;
+    font-weight: 500;
+    color: var(--brown-800);
+    margin-bottom: .2rem;
+  }
+  .photo-caption span {
+    font-size: .78rem;
+    color: var(--brown-400);
+    font-style: italic;
+  }
+
+  /* ── Description ── */
+  .description p { margin-bottom: 1rem; color: #3d2200; }
+  .description p:last-child { margin-bottom: 0; }
+
+  /* ── GPS card ── */
+  .gps-wrapper {
+    margin-top: 1.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #fff;
+  }
+  .map-frame {
+    width: 100%;
+    height: 380px;
+    display: block;
+    border: 0;
+  }
+  .gps-meta {
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .gps-coord {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .gps-coord label {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--brown-400);
+  }
+  .gps-coord value {
+    font-family: 'Inter', monospace;
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--brown-900);
+  }
+  .gps-note {
+    font-size: .8rem;
+    color: var(--brown-400);
+    margin-left: auto;
+    font-style: italic;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--brown-950);
+    color: var(--brown-400);
+    text-align: center;
+    padding: 2.5rem 1rem;
+    font-size: .8rem;
+    letter-spacing: .04em;
+  }
+  footer em { font-style: italic; color: var(--brown-300); }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <svg class="hero-bean" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="32" cy="32" rx="22" ry="28" fill="#7a3800" opacity=".7" transform="rotate(-20 32 32)"/>
+    <path d="M32 10 Q38 32 32 54" stroke="#d9922a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  </svg>
+  <p class="hero-eyebrow">Ficha Botânica · Rubiaceae</p>
+  <h1 class="hero-title">Coffea arabica</h1>
+  <p class="hero-subtitle">Café Arábica — o grão que moldou civilizações</p>
+  <nav class="nav-pills" aria-label="Navegação">
+    <a href="#taxonomia">Taxonomia</a>
+    <a href="#fotos">Folha & Semente</a>
+    <a href="#descricao">Descrição</a>
+    <a href="#localizacao">Localização GPS</a>
+  </nav>
+</header>
+
+<!-- Taxonomia -->
+<section id="taxonomia">
+  <div class="container">
+    <p class="section-label">Classificação científica</p>
+    <h2>Identidade da planta</h2>
+    <p style="color:#5c2800; max-width:620px;">Descrita por Carl Linnaeus em 1753, <em>Coffea arabica</em> é a espécie mais cultivada do mundo, responsável por cerca de 60 % da produção global de café.</p>
+    <div class="taxonomy-grid">
+      <div class="tax-cell">
+        <div class="tax-rank">Nome científico</div>
+        <div class="tax-value">Coffea arabica</div>
+      </div>
+      <div class="tax-cell">
+        <div class="tax-rank">Autoridade</div>
+        <div class="tax-value plain">L. (Linnaeus, 1753)</div>
+      </div>
+      <div class="tax-cell">
+        <div class="tax-rank">Nome comum</div>
+        <div class="tax-value plain">Café Arábica</div>
+      </div>
+      <div class="tax-cell">
+        <div class="tax-rank">Família</div>
+        <div class="tax-value plain">Rubiaceae</div>
+      </div>
+      <div class="tax-cell">
+        <div class="tax-rank">Gênero</div>
+        <div class="tax-value">Coffea</div>
+      </div>
+      <div class="tax-cell">
+        <div class="tax-rank">Ordem</div>
+        <div class="tax-value plain">Gentianales</div>
+      </div>
+      <div class="tax-cell">
+        <div class="tax-rank">Classe</div>
+        <div class="tax-value plain">Magnoliopsida</div>
+      </div>
+      <div class="tax-cell">
+        <div class="tax-rank">Divisão</div>
+        <div class="tax-value plain">Magnoliophyta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Fotos -->
+<section id="fotos">
+  <div class="container">
+    <p class="section-label">Morfologia</p>
+    <h2>Folha &amp; Semente</h2>
+    <p style="color:#5c2800; max-width:620px;">Registros fotográficos de campo realizados em plantações de altitude do Espírito Santo. Escala de referência incluída nas imagens originais.</p>
+    <div class="photo-pair">
+      <div class="photo-card">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-037.jpg/800px-Coffea_arabica_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-037.jpg"
+          alt="Folha de Coffea arabica com nervuras proeminentes e margem ondulada"
+          loading="lazy"
+        >
+        <div class="photo-caption">
+          <strong>Folha — Coffea arabica</strong>
+          <span>Simples, oposta, oval-lanceolada · nervura central proeminente · face adaxial lustrosa · comprimento 8–16 cm</span>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roasted_coffee_beans.jpg/800px-Roasted_coffee_beans.jpg"
+          alt="Sementes de café arábica — drupa vermelha madura e grão verde cru"
+          loading="lazy"
+        >
+        <div class="photo-caption">
+          <strong>Semente (grão) — C. arabica</strong>
+          <span>Endosperma córneo · sulco central ventral característico · drupa baga vermelha a amarela · 2 sementes por fruto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Descrição -->
+<section id="descricao">
+  <div class="container">
+    <p class="section-label">Morfologia &amp; Ecologia</p>
+    <h2>Descrição botânica</h2>
+    <div class="description" style="max-width:700px;">
+      <p><em>Coffea arabica</em> é um arbusto perene ou pequena árvore de 2 a 8 metros de altura em condições naturais, com ramos secundários horizontais e arqueados. A copa é cônica e bem ramificada, adaptada a ambientes sombreados de sub-bosque.</p>
+      <p><strong>Folhas:</strong> simples, opostas, oval-lanceoladas, com margem ondulada e ápice acuminado. A face superior é verde-escura e lustrosa; a inferior, mais clara, apresenta nervura central e nervuras secundárias bem marcadas. Comprimento de 8 a 16 cm, largura de 4 a 6 cm.</p>
+      <p><strong>Flores:</strong> brancas, perfumadas, reunidas em cimeiras axilares de 2 a 9 flores; corola tubular com 5 pétalas; florescem em resposta ao estresse hídrico seguido de chuva (fenômeno chamado de <em>florada</em>).</p>
+      <p><strong>Fruto e semente:</strong> drupa carnosa (baga) globosa a elipsoide, vermelha, amarela ou laranja quando madura, com 14–18 mm de comprimento. Contém normalmente duas sementes (grãos), cada uma envolta em um pergaminho e mucilagem. O endosperma é duro, córneo e esverdeado; após torrefação, adquire coloração de marrom claro a escuro dependendo do processo.</p>
+      <p><strong>Altitude e clima:</strong> prospera entre 900 e 2.000 m de altitude, com temperaturas anuais de 18 a 24 °C, precipitação de 1.500 a 2.000 mm e período seco definido para homogeneizar a floração.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GPS -->
+<section id="localizacao">
+  <div class="container">
+    <p class="section-label">Localização de coleta</p>
+    <h2>Coordenadas GPS da coleta</h2>
+    <p style="color:#5c2800; max-width:620px;">Ponto de coleta registrado em Montanha Verde, região serrana do Espírito Santo — altitude aproximada de 950 m, área com produção de café especial sob sombreamento parcial.</p>
+    <div class="gps-wrapper">
+      <iframe
+        class="map-frame"
+        title="Localização GPS da coleta de Coffea arabica"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-40.9260%2C-19.9400%2C-40.8060%2C-19.8400&layer=mapnik&marker=-19.8900%2C-40.8660"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+      <div class="gps-meta">
+        <div class="gps-coord">
+          <label>Latitude</label>
+          <value>−19° 53′ 24″ S</value>
+        </div>
+        <div class="gps-coord">
+          <label>Longitude</label>
+          <value>−40° 51′ 58″ O</value>
+        </div>
+        <div class="gps-coord">
+          <label>Altitude</label>
+          <value>~950 m</value>
+        </div>
+        <div class="gps-coord">
+          <label>Datum</label>
+          <value>WGS 84</value>
+        </div>
+        <div class="gps-coord">
+          <label>Município</label>
+          <value>Santa Maria de Jetibá, ES</value>
+        </div>
+        <span class="gps-note">Coleta realizada jun. 2026 · período de pré-colheita</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <em>Coffea arabica</em> L. — Rubiaceae · Ficha botânica elaborada com fins de documentação científica e educacional
+</footer>
+
+</body>
+</html>
